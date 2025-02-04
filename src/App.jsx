@@ -38,6 +38,12 @@ export default function App() {
       }
     }
   };
+
+  const deletdVal = (i) => {
+    let newList = [...list];
+    newList.splice(i, 1);
+    setTable(newList);
+  };
   return (
     <>
       <h1 className="text-center p-2">Your Balance is : {balance}</h1>
@@ -68,12 +74,20 @@ export default function App() {
         <tbody>
           {list.map((e, i) => {
             return (
-              <tr>
+              <tr key={i}>
                 <td>{i + 1}</td>
                 <td>{e.before}</td>
                 <td>{e.type}</td>
                 <td>{e.val}</td>
                 <td>{e.After}</td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => deletdVal(i)}
+                  >
+                    del
+                  </button>
+                </td>
               </tr>
             );
           })}
